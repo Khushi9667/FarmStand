@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= product.name %> | FarmStand</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">FarmStand</div>
+        <div class="navbar-right">
+            <a href="/products" class="btn-add">All Products</a>
+            <a href="/products/new" class="btn-add">+ Add Product</a>
+        </div>
+    </nav>
+    <main>
+        <div class="product-card" style="max-width: 500px; margin: 2rem auto;">
+            <img src="<%= product.image %>" alt="<%= product.name %>">
+            <h2><%= product.name %></h2>
+            <p class="price">₹<%= product.price %></p>
+            <p class="category">Category: 
+                <a href="/products?category=<%= product.category %>"><%= product.category %></a>
+            </p>
+
+            <div>
+                <a href="/products/<%= product._id %>/edit" class="btn">Edit</a>
+                <form action="/products/<%= product._id %>?_method=DELETE" method="POST" style="display:inline;">
+                    <button class="del-btn">Delete</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <p>© <%= new Date().getFullYear() %> FarmStand. All rights reserved.</p>
+    </footer>
+</body>
+</html>

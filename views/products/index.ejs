@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmStand</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+      <div class="logo">FarmStand</div>
+      <div class="navbar-right">
+          <form id="filterForm" class="filter-form" action="/products" method="GET">
+              <select name="category" onchange="document.getElementById('filterForm').submit()">
+                  <option value="All" <%= category === 'All' ? 'selected' : '' %>>All</option>
+                  <option value="Fruit" <%= category === 'Fruit' ? 'selected' : '' %>>Fruit</option>
+                  <option value="Vegetable" <%= category === 'Vegetable' ? 'selected' : '' %>>Vegetable</option>
+                  <option value="Dairy" <%= category === 'Dairy' ? 'selected' : '' %>>Dairy</option>
+              </select>
+          </form>
+          <a class="btn-add" href="/products/new">+ Add Product</a>
+      </div>
+  </nav>
+  <div class="products-grid">
+    <% products.forEach(product => { %>
+      <div class="product-card">
+        <img src="<%= product.image %>" alt="<%= product.name %>">
+        <h2><a href="/products/<%= product._id %>"><%= product.name %></a></h2>
+        <p class="price">₹<%= product.price %></p>
+        <p class="category"><%= product.category %></p>
+        <a href="/products/<%= product._id %>/edit" class="btn">Edit</a>
+      </div>
+    <% }) %>
+  </div>
+  <footer class="footer">
+    <p>© <%= new Date().getFullYear() %> FarmStand. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+
+
+
+  
